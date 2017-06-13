@@ -36,16 +36,16 @@ require('throng')({
         return
       }
 
-      if (!activeP) {
-        activeP = true
-        return bot.say('_*the token sale is beginning.*_', config.slack.monitor, console.err)
-      }
-
       if (latest >= config.endBlock) {
         if (doneP) return
 
         doneP = true
         return bot.say('_*the token sale is completed.*_', config.slack.monitor, console.err)
+      }
+
+      if (!activeP) {
+        activeP = true
+        return bot.say('_*the token sale is beginning.*_', config.slack.monitor, console.err)
       }
     })
 
