@@ -1,7 +1,7 @@
 {
   "name": "bat-slack-bot",
   "version": "0.0.1",
-  "description": "Amazing website.",
+  "description": "Slack bot for token sale monitorint",
   "main": "server.js",
   "scripts": {
     "start": "./node_modules/.bin/babel-node worker.js",
@@ -28,8 +28,10 @@
     "gulp-sourcemaps": "^2.5.1",
     "gulp-uglifyjs": "^0.6.2",
     "moment": "2.18.1",
+    "slackbots": "1.0.2",
     "throng": "4.0.0",
-    "tinybot": "1.0.10"
+    "tinybot": "1.0.10",
+    "underscore": "1.8.3"
   },
   "engines": {
     "node": "7.8.0",

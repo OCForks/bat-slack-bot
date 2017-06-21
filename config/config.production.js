@@ -5,8 +5,14 @@ module.exports =
 , portno     : process.env.PORT
 , slack      :
   { monitor  : process.env.SLACK_MONITOR_CHANNEL
+  , report   : process.env.SLACK_REPORT_CHANNEL
   , token    : process.env.SLACK_TOKEN
+  , token2   : process.env.SLACK_ADMIN_TOKEN
   , user     : process.env.SLACK_USER
+  }
+, restricted :
+  { email    : process.env.RESTRICTED_EMAIL
+  , name     : process.env.RESTRICTED_NAME
   }
   , website  : process.env.WEBSITE
 }
