@@ -1,3 +1,14 @@
+process.env.NEW_RELIC_NO_CONFIG_FILE = true
+if (process.env.NEW_RELIC_APP_NAME && process.env.NEW_RELIC_LICENSE_KEY) { var newrelic = require('newrelic') }
+if (!newrelic) {
+  newrelic = {
+    createBackgroundTransaction: (name, group, cb) => { return (cb || group) },
+    noticeError: (ex, params) => {},
+    recordCustomEvent: (eventType, attributes) => {},
+    endTransaction: () => {}
+  }
+}
+
 var profile = process.env.NODE_ENV || 'development'
 var config = require('./config/config.' + profile + '.js')
 

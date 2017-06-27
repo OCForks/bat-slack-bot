@@ -28,6 +28,8 @@
     "gulp-sourcemaps": "^2.5.1",
     "gulp-uglifyjs": "^0.6.2",
     "moment": "2.18.1",
+    "newrelic": "1.38.2",
+    "@newrelic/native-metrics": "2.1.1",
     "slackbots": "1.0.2",
     "throng": "4.0.0",
     "tinybot": "1.0.10",
