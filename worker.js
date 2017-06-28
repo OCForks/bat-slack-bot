@@ -15,6 +15,7 @@ var config = require('./config/config.' + profile + '.js')
 var HttpProvider = require('ethjs-provider-http')
 var BlockTracker = require('eth-block-tracker')
 var moment = require('moment')
+var path = require('path')
 var Slackbot = require('slackbots')
 var Tinybot = require('tinybot')
 var underscore = require('underscore')
@@ -27,7 +28,7 @@ if (((!config.slack.report) || (!config.restricted)) && (!config.address)) {
 var latest = null
 
 require('throng')({
-  start: () => {
+  start: (id) => {
     var adminbot, chatbot
 
     require('http').createServer((request, result) => { result.end() }).on('clientError', (err, socket) => {
@@ -45,6 +46,7 @@ require('throng')({
         userbot.on('start', () => {
           const emailExp = config.restricted.email && new RegExp(config.restricted.email)
           const nameExp = config.restricted.name && new RegExp(config.restricted.name)
+          const npminfo = require(path.join(__dirname, 'package'))
 
           var reports = {}
 
@@ -92,6 +94,9 @@ require('throng')({
           console.log('reporting ' + config.slack.report)
           console.log('matching emailExp=' + emailExp.toString() + ' and/or nameExp=' + nameExp.toString())
           adminbot.say('_reporting for duty._', config.slack.report, console.err)
+
+          adminbot.say(require('os').hostname() + ' ' + npminfo.name + '@' + npminfo.version +
+                       ' started ' + (process.env.DYNO || 'web') + '/' + id, '#devops-bot', console.err)
 
           check()
         })
